@@ -103,7 +103,7 @@
     $stmt2->close();
     ?>
     </h5>
-    <h5 class="rate">Liczba wyświetleń tej strony od września:
+    <h5 class="rate">Liczba wyświetleń tej strony:
     <?php 
     $conn3 = new mysqli("localhost", "root", "", "ocena");
     $conn3->set_charset("utf8");
