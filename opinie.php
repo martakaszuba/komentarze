@@ -23,13 +23,17 @@
     if (isset($_POST["submit"])){
         $author = $_POST["author"];
         $author = trim($author);
+	$author = htmlspecialchars($author);
         $rate = $_POST["rate"];
         $rate = trim($rate);
         $rate = intval($rate);
+	$rate = htmlspecialchars($rate);
         $flaws = $_POST["flaws"];
         $flaws = trim($flaws);
+	$flaws = htmlspecialchars($flaws);
         $adv = $_POST["adv"];
         $adv = trim($adv);
+	$adv = htmlspecialchars($adv);
         if (strlen($author) === 0){
             echo "Wpisz firmę/imię";
         }
@@ -127,6 +131,7 @@
       echo "</div>";
     }
     $stmt->close();
+    $conn->close();
     ?>
     </div>
 </body>
