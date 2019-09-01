@@ -2,21 +2,22 @@
     margin:0;
     padding:0;
     background-color:#F1F1F1;
+    font-family:"Open Sans", sans-serif;
 }
 
 #top {
     text-align:center;
-    background-color:#d2d5dd;
+    background-color:#D2D5DD;
     margin:0 auto;
     padding:10px;
 }
 
 #top p,h5 {
-    background-color:#d2d5dd;
+    background-color:#D2D5DD;
 }
 
 form {
-    background-color:#d2d5dd;
+    background-color:#D2D5DD;
 }
 
 #comments {
@@ -36,7 +37,8 @@ h5 {
 }
 
 #err {
-    color:red;
+    color:rgb(92, 15, 15);
+    font-size:16.5px;
 }
 
 .comment {
@@ -74,7 +76,23 @@ textarea {
 }
 
 .rate {
-color:#4b628e;
+color:#234175;
 background-color:#F1F1F1;
 padding:15px;
+}
+
+.com {
+    color:#122544;
+    background-color:#F1F1F1;
+    padding:15px;
+    font-weight:bold;
+    font-size:20px;
+    }
+
+button {
+    margin-top:10px;
+}
+
+button:hover {
+    opacity:0.7;
 }

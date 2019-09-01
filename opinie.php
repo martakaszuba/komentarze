@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Komentarze na temat portfolio</title>
 </head>
@@ -16,7 +17,7 @@
     <p>Jak oceniasz portfolio w skali 1-10: <input type="number" name="rate"></p>
     <p>Wpisz wady portfolio (nad czym powinnam popracować): <input type="text" name="flaws" size=28></p>
     <p>Wpisz zalety portfolio (co Ci się spodobało): <input type="text" name="adv" size=28></p>
-    <button name="submit" class="btn btn-primary">Zatwierdź</button>
+    <button name="submit" class="btn btn-dark">Zatwierdź</button>
     </form><br>
     <p id="err">
     <?php
@@ -35,7 +36,7 @@
         $adv = htmlspecialchars($adv);
 
         if (strlen($author) === 0){
-            echo "Wpisz firmę/imię";
+            echo "Wpisz firmę/imię!";
         }
         else if (strlen($author)>50){
             echo "Za długa nazwa!";
@@ -82,7 +83,7 @@
 ?>
     </div>
     <div id="comments">
-    <h5 class="rate">Średnia ocena:
+    <h5 class="rate">Średnia ocena portfolio:
     <?php
     $conn2 = new mysqli("localhost", "root", "", "ocena");
     $conn2->set_charset("utf8");
@@ -102,7 +103,35 @@
     $stmt2->close();
     ?>
     </h5>
-    <h5 class="rate">Komentarze</h5>
+    <h5 class="rate">Liczba wyświetleń tej strony od września:
+    <?php 
+    $conn3 = new mysqli("localhost", "root", "", "ocena");
+    $conn3->set_charset("utf8");
+    if ($conn3->connect_error){
+    die("Connection failed: " . $conn3->connect_error);
+    }
+    $stmt3 = $conn3->prepare("SELECT count FROM count");
+    $stmt3->execute();
+    $result3 = $stmt3->get_result();
+    if ($result3->num_rows === 0){
+      echo "";
+      die;
+    }
+   
+    while ($row3 = $result3->fetch_assoc()){
+        $count = $row3['count'];
+        $count++;
+    }
+    echo $count;
+    $sql2="UPDATE count SET count =$count";
+		$stmt3 = $conn3->prepare($sql2);
+		$stmt3->execute();
+		$stmt3->close();
+		$conn3->close();
+    ?>
+
+    </h5>
+    <h5 class="com">Komentarze</h5>
     <?php
     $conn = new mysqli("localhost", "root", "", "ocena");
     $conn->set_charset("utf8");
@@ -124,7 +153,7 @@
       $pros = $row['pros'];
       $reasons = $row['reasons'];
       echo "<div class='comment'>";
-      echo "<p><span class='w'>Firma/autor: </span>".$author."</p>";
+      echo "<p><span class='w'>Firma/Imię: </span>".$author."</p>";
       echo "<p><span class='w'>Ocena portfolio: </span>".$rate."</p>";
       echo "<p><span class='w'>Wady portfolio: </span>".$faults."</p>";
       echo "<p><span class='w'>Zalety portfolio: </span>".$pros."</p>";
