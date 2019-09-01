@@ -13,7 +13,7 @@
     <form method="post">
     <h5>Dodaj komentarz na temat portfolio</h5><br>
     <p>Firma/Imię: <input type="text" name="author"></p>
-    <p>Jak oceniasz portfolio w skali 0-10: <input type="number" name="rate"></p>
+    <p>Jak oceniasz portfolio w skali 1-10: <input type="number" name="rate"></p>
     <p>Wpisz wady portfolio (nad czym powinnam popracować): <input type="text" name="flaws" size=28></p>
     <p>Wpisz zalety portfolio (co Ci się spodobało): <input type="text" name="adv" size=28></p>
     <button name="submit" class="btn btn-primary">Zatwierdź</button>
@@ -23,17 +23,17 @@
     if (isset($_POST["submit"])){
         $author = $_POST["author"];
         $author = trim($author);
-	$author = htmlspecialchars($author);
+        $author = htmlspecialchars($author);
         $rate = $_POST["rate"];
         $rate = trim($rate);
         $rate = intval($rate);
-	$rate = htmlspecialchars($rate);
         $flaws = $_POST["flaws"];
         $flaws = trim($flaws);
-	$flaws = htmlspecialchars($flaws);
+        $flaws = htmlspecialchars($flaws);
         $adv = $_POST["adv"];
         $adv = trim($adv);
-	$adv = htmlspecialchars($adv);
+        $adv = htmlspecialchars($adv);
+
         if (strlen($author) === 0){
             echo "Wpisz firmę/imię";
         }
@@ -41,28 +41,28 @@
             echo "Za długa nazwa!";
         }
         else if (!is_int($rate)){
-            echo "Wpisz liczbę całkowitą!";
+            echo "Wpisz liczbę od 1 do 10!";
         }
-        else if ($rate<0 || $rate>10){
-            echo "Wpisz lczbę od 0 do 10!";
+        else if ($rate<1 || $rate>10){
+            echo "Wpisz liczbę od 1 do 10!";
         }
 
         else if (strlen($flaws) === 0){
             echo "Wpisz wady portfolio!";
         }
-        else if (strlen($flaws)>120){
-            echo "Za długi tekst!";
+        else if (strlen($flaws)>140){
+            echo "Za długi tekst skróć do 140 znaków!";
         }
 
         else if (strlen($adv) === 0){
             echo "Wpisz zalety portfolio!";
         }
-        else if (strlen($adv)>120){
-            echo "Za długi tekst!";
+        else if (strlen($adv)>140){
+            echo "Za długi tekst skróć do 140 znaków!";
         }
 
         else {
-            $conn = new mysqli("localhost", "root", "", "ocena");
+        $conn = new mysqli("localhost", "root", "", "ocena");
 		$conn->set_charset("utf8");
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
@@ -86,13 +86,13 @@
     <?php
     $conn2 = new mysqli("localhost", "root", "", "ocena");
     $conn2->set_charset("utf8");
-            if ($conn2->connect_error) {
-            die("Connection failed: " . $conn2->connect_error);
-            }
-            $stmt2 = $conn2->prepare("SELECT AVG(rate) as average FROM portfolio");
+    if ($conn2->connect_error){
+    die("Connection failed: " . $conn2->connect_error);
+    }
+    $stmt2 = $conn2->prepare("SELECT AVG(rate) as average FROM portfolio");
     $stmt2->execute();
     $result2 = $stmt2->get_result();
-    if ($result2->num_rows === 0) {
+    if ($result2->num_rows === 0){
       echo "";
       die;
     }
@@ -112,12 +112,12 @@
             $stmt = $conn->prepare("SELECT * FROM portfolio");
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows === 0) {
+    if ($result->num_rows === 0){
       echo "";
       die;
     }
    
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
       $author = $row['author'];
       $rate = $row['rate'];
       $faults = $row['faults'];
