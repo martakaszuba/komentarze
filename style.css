@@ -7,17 +7,20 @@
 
 #top {
     text-align:center;
-    background-color:#D2D5DD;
+    background-color:rgb(120, 123, 126);
     margin:0 auto;
     padding:10px;
+    color:white;
 }
 
 #top p,h5 {
-    background-color:#D2D5DD;
+    background-color:rgb(120, 123, 126);
+    color:white;
 }
 
 form {
-    background-color:#D2D5DD;
+    background-color:rgb(120, 123, 126);
+    color:white;
 }
 
 #comments {
