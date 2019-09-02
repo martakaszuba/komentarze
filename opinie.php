@@ -13,10 +13,10 @@
 <div id="top">
     <form method="post">
     <h5>Dodaj komentarz na temat portfolio</h5><br>
-    <p>Firma/Imię: <input type="text" name="author"></p>
-    <p>Jak oceniasz portfolio w skali 1-10: <input type="number" name="rate"></p>
-    <p>Wpisz wady portfolio (nad czym powinnam popracować): <input type="text" name="flaws" size=28></p>
-    <p>Wpisz zalety portfolio (co Ci się spodobało): <input type="text" name="adv" size=28></p>
+    <p class="info">Firma/Imię: <input type="text" name="author"></p>
+    <p class="info">Jak oceniasz portfolio w skali 1-10: <input type="number" name="rate"></p>
+    <p class="info">Wpisz wady portfolio (nad czym powinnam popracować): <input type="text" name="flaws" size=28></p>
+    <p class="info">Wpisz zalety portfolio (co Ci się spodobało): <input type="text" name="adv" size=28></p>
     <button name="submit" class="btn btn-light">Zatwierdź</button>
     </form><br>
     <p id="err">
